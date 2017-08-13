@@ -1,0 +1,16 @@
+mqtt_host: localhost
+
+sensors:
+  # See:
+  #   https://github.com/flipdot/drinks-storage-mqtt
+  #   https://github.com/flipdot/drinks-storage-state
+
+  drinks-storage:
+    topic: sensors/cellar/drinks_crate_counts
+    const:
+      category: beverage_supply
+      location: cellar
+      unit: crt
+      name: mate
+    mqtt:
+      value: crate_count
