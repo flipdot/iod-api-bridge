@@ -7,6 +7,7 @@ import yaml
 from requests import RequestException
 
 API_HOST = "api.flipdot.org"
+API_PREFIX = "sensors"
 MQTT_TOPIC_ERRORS = "errors"
 
 config = yaml.load(open("config.yaml", "r"))
@@ -66,8 +67,9 @@ def on_message(client, userdata, message):
                                  sensor_const, sensor_mqtt, mqtt_msg)
 
         # API_HOST/category/location/value[/unit[/name]]
-        web_url = "https://{}/{}/{}/{}/{}/{}".format(
+        web_url = "https://{}/{}/{}/{}/{}/{}/{}".format(
             API_HOST,
+            API_PREFIX,
             web_category,
             web_location,
             web_value,
