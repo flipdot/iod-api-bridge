@@ -1,0 +1,12 @@
+[Unit]
+Description=IoD API bridge daemon
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=flipdot
+WorkingDirectory=/home/flipdot/iod/iod-api-bridge
+ExecStart=/home/flipdot/iod/iod-api-bridge/iod-api-bridge.py
+
+[Install]
+WantedBy=multi-user.target
