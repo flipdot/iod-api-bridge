@@ -11,7 +11,7 @@ API_PREFIX = "sensors"
 MQTT_TOPIC_ERRORS = "errors"
 
 config = yaml.load(open("config.yaml", "r"))
-
+session = None
 
 def find_sensor_by_topic(topic):
     sensors = config["sensors"]
@@ -44,6 +44,13 @@ def on_connect(client, userdata, flags, result):
     for sensor in sensors.values():
         topic = sensor["topic"]
         client.subscribe(topic)
+
+
+def get(url):
+    global session
+    if not session:
+        session = requests.Session()
+    return session.get(url)
 
 
 def on_message(client, userdata, message):
@@ -85,7 +92,7 @@ def on_message(client, userdata, message):
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
 
     try:
-        requests.get(web_url)
+        get(web_url)
     except RequestException as e:
         error_json = {
             "origin": "iod-api-bridge",
