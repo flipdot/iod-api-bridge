@@ -1,4 +1,4 @@
-mqtt_host: localhost
+mqtt_host: mqtt.fd
 
 sensors:
   # See:
@@ -11,6 +11,6 @@ sensors:
       category: beverage_supply
       location: cellar
       unit: crt
-      name: mate
     mqtt:
       value: crate_count
+      name: scale_name
