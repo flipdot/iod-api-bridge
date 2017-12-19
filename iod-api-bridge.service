@@ -6,6 +6,7 @@ After=syslog.target network.target
 Type=simple
 User=flipdot
 WorkingDirectory=/home/flipdot/iod/iod-api-bridge
+Environment=PYTHONUNBUFFERED=1
 ExecStart=/home/flipdot/iod/iod-api-bridge/iod-api-bridge.py
 
 [Install]
