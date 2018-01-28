@@ -4,7 +4,6 @@ sensors:
   # See:
   #   https://github.com/flipdot/drinks-storage-mqtt
   #   https://github.com/flipdot/drinks-storage-state
-
   drinks-storage:
     topic: sensors/cellar/drinks_crate_counts
     const:
@@ -14,3 +13,59 @@ sensors:
     mqtt:
       value: crate_count
       name: scale_name
+  heater:
+    topic: sensors/heater/f391d8/fenster
+    const:
+      category: heater
+      location: lounge
+      unit: C
+      name: lounge
+    mqtt:
+      value: temperature
+  heater2:
+    topic: sensors/heater/4c857f/fenster
+    const:
+      category: heater
+      location: m-shop
+      unit: C
+      name: m-shop
+    mqtt:
+      value: temperature
+  heater3:
+    topic: sensors/heater/f376db/fenster
+    const:
+      category: heater
+      location: raum4
+      unit: C
+      name: raum4
+    mqtt:
+      value: temperature
+
+  heater-setpoint:
+    topic: sensors/heater/f391d8/fenster
+    const:
+      category: heater_set_point
+      location: lounge
+      unit: C
+      name: lounge
+    mqtt:
+      value: setpoint
+  heater2-setpoint:
+    topic: sensors/heater/4c857f/fenster
+    const:
+      category: heater_set_point
+      location: m-shop
+      unit: C
+      name: m-shop
+    mqtt:
+      value: setpoint
+  heater3-setpoint:
+    topic: sensors/heater/f376db/fenster
+    const:
+      category: heater_set_point
+      location: raum4
+      unit: C
+      name: raum4
+    mqtt:
+      value: setpoint
+
