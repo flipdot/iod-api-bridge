@@ -19,7 +19,7 @@ sensors:
       category: beverage_supply_raw
       location: cellar
       unit: raw
-      value_prefix: esp_
+      name_prefix: esp_
     mqtt:
       value: scale_value
       name: esp_id

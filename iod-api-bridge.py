@@ -74,9 +74,13 @@ def on_message(client, userdata, message):
         web_name = config_lookup("name",
                                  sensor_const, sensor_mqtt, mqtt_msg)
 
+        web_name_prefix = config_lookup("name_prefix",
+                                        sensor_const, sensor_mqtt, mqtt_msg)
         web_value_prefix = config_lookup("value_prefix",
                                          sensor_const, sensor_mqtt, mqtt_msg)
 
+        if web_name_prefix:
+            web_name = f"{web_name_prefix}{web_name}"
         if web_value_prefix:
             web_value = f"{web_value_prefix}{web_value}"
 
