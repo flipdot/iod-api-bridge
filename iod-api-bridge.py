@@ -29,8 +29,10 @@ def config_lookup(value, sensor_const, sensor_mqtt, mqtt_msg):
     ret = None
     if value in sensor_mqtt:
         ret = mqtt_msg[sensor_mqtt[value]]
-    else:
+    elif value in sensor_const:
         ret = sensor_const[value]
+    else:
+        ret = False
     return ret
 
 
