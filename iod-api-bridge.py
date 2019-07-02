@@ -58,6 +58,7 @@ def on_message(client, userdata, message):
     sensor = find_sensor_by_topic(topic)
     sensor_const = sensor[1]["const"]
     sensor_mqtt = sensor[1]["mqtt"]
+    web_url = ""
 
     try:
         mqtt_msg = yaml.load(message.payload)
@@ -72,6 +73,12 @@ def on_message(client, userdata, message):
                                  sensor_const, sensor_mqtt, mqtt_msg)
         web_name = config_lookup("name",
                                  sensor_const, sensor_mqtt, mqtt_msg)
+
+        web_value_prefix = config_lookup("value_prefix",
+                                         sensor_const, sensor_mqtt, mqtt_msg)
+
+        if web_value_prefix:
+            web_value = f"{web_value_prefix}{web_value}"
 
         # API_HOST/category/location/value[/unit[/name]]
         web_url = "https://{}/{}/{}/{}/{}/{}/{}".format(
@@ -92,6 +99,8 @@ def on_message(client, userdata, message):
         client.publish(MQTT_TOPIC_ERRORS, json.dumps(error_json))
 
     try:
+        if not web_url:
+            raise RequestException("No URL defined.")
         get(web_url)
     except RequestException as e:
         error_json = {
