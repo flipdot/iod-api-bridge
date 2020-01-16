@@ -10,7 +10,7 @@ API_HOST = "api.flipdot.org"
 API_PREFIX = "sensors"
 MQTT_TOPIC_ERRORS = "errors"
 
-config = yaml.load(open("config.yaml", "r"))
+config = yaml.safe_load(open("config.yaml", "r"))
 session = None
 
 def find_sensor_by_topic(topic):
@@ -49,6 +49,9 @@ def on_connect(client, userdata, flags, result):
 
 
 def get(url):
+    print(url)
+    return
+    print("OH NOES")
     global session
     if not session:
         session = requests.Session()
@@ -63,7 +66,7 @@ def on_message(client, userdata, message):
     web_url = ""
 
     try:
-        mqtt_msg = yaml.load(message.payload)
+        mqtt_msg = yaml.safe_load(message.payload)
 
         web_category = config_lookup("category",
                                      sensor_const, sensor_mqtt, mqtt_msg)
