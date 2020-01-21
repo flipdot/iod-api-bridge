@@ -49,9 +49,6 @@ def on_connect(client, userdata, flags, result):
 
 
 def get(url):
-    print(url)
-    return
-    print("OH NOES")
     global session
     if not session:
         session = requests.Session()
